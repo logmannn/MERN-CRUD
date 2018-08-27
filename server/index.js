@@ -20,7 +20,8 @@ const typeDefs = `
   }
   type Mutation {
       createTodo(text: String!): Todo
-      updateTodo(id: ID!, complete: Boolean!, text: String!): Boolean
+      updateTodo(id: ID!, complete: Boolean!): Boolean
+      updateTodoText(id: ID!, text: String!): Boolean
       removeTodo(id: ID!): Boolean
   }
 `;
@@ -37,8 +38,8 @@ const resolvers = {
       await todo.save();
       return todo;
     },
-    updateTodo: async (_, { id, complete, text }) => {
-      await Todo.findByIdAndUpdate(id, { complete, text });
+    updateTodo: async (_, { id, complete }) => {
+      await Todo.findByIdAndUpdate(id, { complete });
       return true;
     },
     removeTodo: async (_, { id }) => {
