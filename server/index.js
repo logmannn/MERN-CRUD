@@ -42,6 +42,10 @@ const resolvers = {
       await Todo.findByIdAndUpdate(id, { complete });
       return true;
     },
+    updateTodoText: async (_, { id, text }) => {
+      await Todo.findByIdAndUpdate(id, { text });
+      return true;
+    },
     removeTodo: async (_, { id }) => {
       await Todo.findByIdAndRemove(id);
       return true;
