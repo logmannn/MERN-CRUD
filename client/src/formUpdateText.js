@@ -1,8 +1,5 @@
 import React from "react";
-import TextField from "@material-ui/core/TextField";
-import AddIcon from "@material-ui/icons/Add";
 import Button from "@material-ui/core/Button";
-import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Icon from "@material-ui/core/Icon";
 
@@ -28,6 +25,7 @@ export default class Form extends React.Component {
       let test = {
         id: this.state.id,
         text: this.state.text,
+        complete: this.state.complete,
         __typename: "Todo"
       };
       this.props.onSubmit(test);
@@ -39,6 +37,7 @@ export default class Form extends React.Component {
     let test = {
       id: this.state.id,
       text: this.state.text,
+      complete: this.state.complete,
       __typename: "Todo"
     };
     this.props.onSubmit(test);

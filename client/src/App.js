@@ -1,21 +1,15 @@
 import React, { Component } from "react";
 import gql from "graphql-tag";
 import { graphql, compose } from "react-apollo";
-import { log } from "util";
 import Paper from "@material-ui/core/Paper";
 import styled from "styled-components";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-import ListItemText from "@material-ui/core/ListItemText";
 import Checkbox from "@material-ui/core/Checkbox";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Form from "./form";
 import FormUpdateText from "./formUpdateText";
-import Button from "@material-ui/core/Button";
-import Icon from "@material-ui/core/Icon";
-import { withStyles } from "@material-ui/core/styles";
 
 const TodosQuery = gql`
   {
@@ -66,6 +60,7 @@ class App extends Component {
   }
 
   updateTodo = async todo => {
+    // console.log(todo);
     await this.props.updateTodo({
       variables: {
         id: todo.id,
@@ -95,8 +90,7 @@ class App extends Component {
     await this.props.updateTodoText({
       variables: {
         id: todo.id,
-        text: todo.text,
-        complete: todo.complete
+        text: todo.text
       },
       update: store => {
         // Read the data from our cache for this query.
@@ -108,8 +102,7 @@ class App extends Component {
             x.id === todo.id
               ? {
                   ...todo,
-                  text: todo.text,
-                  complete: todo.complete
+                  text: todo.text
                 }
               : x
         );
